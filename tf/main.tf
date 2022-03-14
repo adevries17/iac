@@ -20,8 +20,8 @@ resource "proxmox_lxc" "rockmc-0" {
     onboot=true
     start=true
     vmid=150
-    cores=4
-    memory=12288
+    cores=8
+    memory=24576
     rootfs {
         storage=var.lvmt
         size="8G"
