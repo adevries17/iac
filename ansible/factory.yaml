@@ -1,0 +1,35 @@
+---
+  - hosts: 192.168.17.111
+    become: true
+    pre_tasks:
+      - name: update package cache
+        dnf:
+          update_cache: yes
+          autoremove: yes
+    tasks:
+    - name: install base applications
+      dnf:
+        name:
+          - vim
+          - tmux
+          - python3
+          - epel-release
+          - curl
+          - wget
+          - tar
+          - bzip2
+          - gzip
+          - unzip
+          - binutils
+          - bc 
+          - jq
+          - glibc.i686
+          - libstdc++
+          - libstdc++.i686
+        state: present
+    - name: create mc user
+      user:
+        name: factory
+        state: present
+        shell: /bin/bash
+        password: "{{ pwd|password_hash('sha512') }}"
