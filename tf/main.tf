@@ -39,7 +39,7 @@ resource "proxmox_lxc" "satisfactory" {
     hostname        = "factorygame"
     memory          = 12288
     onboot          = true
-    ostemplate      = var.debtmpl
+    ostemplate      = var.rockt
     protection      = false
     ssh_public_keys = var.sshkey
     start           = true
