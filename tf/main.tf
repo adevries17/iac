@@ -34,3 +34,27 @@ resource "proxmox_lxc" "rockmc-0" {
     }
     ssh_public_keys=var.sshkey
 }
+resource "proxmox_lxc" "satisfactory" {
+    cores           = 6
+    hostname        = "factorygame"
+    memory          = 12288
+    onboot          = true
+    ostemplate      = var.debtmpl
+    protection      = false
+    ssh_public_keys = var.sshkey
+    start           = true
+    swap            = 512
+    target_node     = "tnpve1"
+    unprivileged    = true
+    vmid            = 111
+    network {
+        bridge      = "vmbr0"
+        gw          = "192.168.17.1"
+        ip          = "192.168.17.111/24"
+        name        = "eth0"
+    }
+    rootfs {
+        size        = "32G"
+        storage     = var.lvmt
+    }
+}
