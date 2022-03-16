@@ -1,0 +1,12 @@
+---
+  - hosts: all
+    become: yes
+    tasks:
+    - name: install base software
+      package:
+        name:
+          - vim
+          - tmux
+          - python3
+          - openssh-server
+        state: latest
