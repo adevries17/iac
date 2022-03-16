@@ -42,7 +42,7 @@ resource "proxmox_lxc" "rockmc-0" {
 resource "proxmox_lxc" "satisfactory" {
     count           = 0
     cores           = 6
-    hostname        = "factorygame"
+    hostname        = "factorygame-${count.index+1}"
     memory          = 12288
     onboot          = true
     ostemplate      = var.rockt
