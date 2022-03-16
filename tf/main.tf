@@ -11,10 +11,8 @@ provider "proxmox" {
     pm_api_token_id     = var.pm_api_token_id
     pm_api_token_secret = var.pm_api_token_secret
 }
-resource "local_file" "ansible_inventory" {
-    content         = "hello world"
-    filename        = "test.txt"
-}
+
+# resources
 resource "proxmox_lxc" "rockmc-0" {
     count           = 1
     cores           = 8
