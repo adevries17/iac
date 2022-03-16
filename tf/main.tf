@@ -11,30 +11,38 @@ provider "proxmox" {
     pm_api_token_id     = var.pm_api_token_id
     pm_api_token_secret = var.pm_api_token_secret
 }
+resource "local_file" "ansible_inventory" {
+    content         = "hello world"
+    filename        = "test.txt"
+}
 resource "proxmox_lxc" "rockmc-0" {
-    count=1
-    target_node="vmtoog"
-    hostname="gunnermc"
-    ostemplate=var.rockt
-    unprivileged=true
-    onboot=true
-    start=true
-    vmid=150
-    cores=8
-    memory=24576
-    rootfs {
-        storage=var.lvmt
-        size="8G"
-    }
+    count           = 1
+    cores           = 8
+    hostname        = "gunnermc"
+    memory          = 24576
+    onboot          = true
+    ostemplate      = var.rockt
+    protection      = false
+    ssh_public_keys = var.sshkey
+    start           = true
+    swap            = 512
+    target_node     = "vmtoog"
+    unprivileged    = true
+    vmid            = 150
     network {
-        name="eth0"
-        bridge="vmbr0"
-        ip="192.168.17.150/24"
-        gw="192.168.17.1"
+        bridge      = "vmbr0"
+        gw          = "192.168.17.1"
+        ip          = "192.168.17.150/24"
+        name        = "eth0"
     }
-    ssh_public_keys=var.sshkey
+    rootfs {
+        size        = "8G"
+        storage     = var.lvmt
+    }
+    
 }
 resource "proxmox_lxc" "satisfactory" {
+    count           = 0
     cores           = 6
     hostname        = "factorygame"
     memory          = 12288
