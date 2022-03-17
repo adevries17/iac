@@ -39,7 +39,7 @@ resource "proxmox_lxc" "rockmc-0" {
     }
     
 }
-resource "proxmox_lxc" "factorygamet" {
+resource "proxmox_lxc" "factorygame" {
     count           = 0
     cores           = 6
     hostname        = "factorygame-${count.index+1}"
