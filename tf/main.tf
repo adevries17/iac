@@ -39,7 +39,7 @@ resource "proxmox_lxc" "rockmc-0" {
     }
     
 }
-resource "proxmox_lxc" "satisfactory" {
+resource "proxmox_lxc" "factorygamet" {
     count           = 0
     cores           = 6
     hostname        = "factorygame-${count.index+1}"
@@ -52,11 +52,10 @@ resource "proxmox_lxc" "satisfactory" {
     swap            = 512
     target_node     = "tnpve1"
     unprivileged    = true
-    vmid            = 111
     network {
         bridge      = "vmbr0"
         gw          = "192.168.17.1"
-        ip          = "192.168.17.111/24"
+        ip          = "dhcp"
         name        = "eth0"
     }
     rootfs {
