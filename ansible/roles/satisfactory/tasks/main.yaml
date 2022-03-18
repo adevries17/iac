@@ -18,3 +18,13 @@
       - libstdc++.i686
     state: present
     update_cache: yes
+
+- name: create sfserver user
+  user:
+    create_home: yes
+    name: sfserver
+    state: present
+- name: copy skel bash
+  copy:
+    src: /etc/skel/.bashrc
+    dst: /home/sfserver/.bashrc
