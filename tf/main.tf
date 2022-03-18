@@ -40,8 +40,8 @@ resource "proxmox_lxc" "rockmc-0" {
     
 }
 resource "proxmox_lxc" "factorygame" {
-    count           = 1
-    cores           = 6
+    count           = 0
+    cores           = 4
     hostname        = "factorygame-${count.index+1}"
     memory          = 12288
     onboot          = true
@@ -59,13 +59,7 @@ resource "proxmox_lxc" "factorygame" {
         name        = "eth0"
     }
     rootfs {
-        size        = "32G"
+        size        = "16G"
         storage     = var.lvmt
     }
 }
-
-/*
-resource "local_file" "ansible_inventory" {
-    content = templatefile("${local.templates_dir}/ansible-inventory.tpl", { webapps=[for host in linode_instance.cfe-pyapp.*: "${host.ip_address}"], loadbalancer="${linode_instance.cfe-loadbalancer.ip_address}" })
-    
-} */
