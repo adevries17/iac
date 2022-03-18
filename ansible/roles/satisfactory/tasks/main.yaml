@@ -13,9 +13,7 @@
       - bc 
       - jq
       - tmux
-      - glibc.i686
       - libstdc++
-      - libstdc++.i686
     state: present
     update_cache: yes
 
@@ -26,5 +24,17 @@
     state: present
 - name: copy skel bash
   copy:
+    remote_src: yes
     src: /etc/skel/.bashrc
-    dst: /home/sfserver/.bashrc
+    dest: /home/sfserver/.bashrc
+
+- name: create .ssh in sfserver home 
+  file:
+    path: /home/sfserver/.ssh 
+    state: directory
+    
+- name: copy ssh key
+  copy:
+    remote_src: yes
+    src: /root/.ssh/authorized_keys
+    dest: /home/sfserver/.ssh/authorized_keys

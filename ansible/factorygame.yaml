@@ -2,4 +2,5 @@
 - hosts: factorygame
   become: yes
   roles:
+  - ./roles/rhel
   - ./roles/satisfactory
