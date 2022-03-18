@@ -87,3 +87,7 @@ resource "proxmox_lxc" "minecraft" {
         storage     = var.lvmt
     }
 }
+resource "local_file" "ansible_inventory" {
+    content = templatefile("${abspath(path.root)}/templates/ansible-inventory.tpl", { factorygame=[for host in proxmox_lxc.factorygame.*: "${host.hostname}.turtlesnet.dev"], minecraft=[for host in proxmox_lxc.minecraft.*: "${host.hostname}.turtlesnet.dev"] })
+    filename = "${dirname(abspath(path.root))}/ansible/inventory.ini"
+}
