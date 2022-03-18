@@ -1,0 +1,5 @@
+---
+- hosts: factorygame
+  become: yes
+  roles:
+  - ./roles/satisfactory
