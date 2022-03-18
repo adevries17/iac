@@ -8,5 +8,4 @@
           - vim
           - tmux
           - python3
-          - openssh-server
-        state: latest
+        state: present
