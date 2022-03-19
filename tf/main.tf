@@ -90,5 +90,5 @@ resource "local_file" "ansible_inventory" {
         size        = "8G"
         storage     = var.lvmt
     }
-    
+
 } */
