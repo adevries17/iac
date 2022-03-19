@@ -15,6 +15,8 @@
       - tmux
       - libstdc++
       - nmap-ncat
+      - glibc.i686
+      - libstdc++.i686
     state: present
     update_cache: yes
 
@@ -23,7 +25,6 @@
     create_home: yes
     name: sfserver
     state: present
-    groups: "wheel"
 
 - name: copy skel bash
   copy:
