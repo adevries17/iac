@@ -14,7 +14,7 @@ provider "proxmox" {
 
 # resources
 resource "proxmox_lxc" "factorygame" {
-    count           = 0
+    count           = 2
     cores           = 4
     hostname        = "factorygame-${count.index+1}"
     memory          = 12288
@@ -38,7 +38,7 @@ resource "proxmox_lxc" "factorygame" {
     }
 }
 resource "proxmox_lxc" "minecraft" {
-    count           = 0
+    count           = 1
     cores           = 4
     hostname        = "minecraft-${count.index+1}"
     memory          = 16384
