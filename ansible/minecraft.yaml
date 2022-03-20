@@ -11,19 +11,26 @@
   - name: install dependencies
     dnf:
       name:
-        - curl
-        - wget
-        - tar
-        - bzip2
-        - gzip
-        - unzip
-        - python3
-        - binutils
         - bc
-        - jq
-        - tmux
+        - binutils
+        - bzip2
+        - cpio
+        - curl
+        - file
+        - glibc.i686
+        - gzip
+        - hostname
         - java-11-openjdk
+        - jq
+        - libstdc++.i686
         - nmap-ncat
+        - python3
+        - tar
+        - tmux
+        - unzip
+        - util-linux
+        - wget
+        - xz
       state: present
       update_cache: yes
   - name: create pmcserver user
