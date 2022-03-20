@@ -51,3 +51,5 @@
       remote_src: yes
       src: /root/.ssh/authorized_keys
       dest: /home/sfserver/.ssh/authorized_keys
+      owner: sfserver
+      group: sfserver
