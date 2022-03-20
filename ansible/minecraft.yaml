@@ -1,0 +1,49 @@
+---
+- hosts: minecraft
+  become: yes
+  pre_tasks:
+  - name: install epel-release
+    dnf:
+      name: epel-release
+      state: latest
+      update_cache: yes
+  tasks:
+  - name: install dependencies
+    dnf:
+      name:
+        - curl
+        - wget
+        - tar
+        - bzip2
+        - gzip
+        - unzip
+        - python3
+        - binutils
+        - bc
+        - jq
+        - tmux
+        - java-11-openjdk
+        - nmap-ncat
+      state: present
+      update_cache: yes
+  - name: create pmcserver user
+    user:
+      create_home: yes
+      name: pmcserver
+      state: present
+  - name: copy .bash from skel
+    copy:
+      remote_src: yes
+      src: /etc/skel/.bashrc
+      dest: /home/pmcserver/.bashrc
+  - name: create .ssh directory in pmcserver home
+    file:
+      path: /home/pmcserver/.ssh
+      state: directory
+  - name: copy authorized ssh key
+    copy:
+      remote_src: yes
+      src: /root/.ssh/authorized_keys
+      dest: /home/pmcserver/.ssh/authorized_keys
+      owner: pmcserver
+      group: pmcserver
