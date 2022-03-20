@@ -10,7 +10,7 @@
       - unzip
       - python3
       - binutils
-      - bc 
+      - bc
       - jq
       - tmux
       - libstdc++
@@ -32,13 +32,35 @@
     src: /etc/skel/.bashrc
     dest: /home/sfserver/.bashrc
 
-- name: create .ssh in sfserver home 
+- name: create .ssh in sfserver home
   file:
-    path: /home/sfserver/.ssh 
+    path: /home/sfserver/.ssh
     state: directory
-    
+
 - name: copy ssh key
   copy:
     remote_src: yes
     src: /root/.ssh/authorized_keys
     dest: /home/sfserver/.ssh/authorized_keys
+
+- name: grab setup script from linux gsm
+  shell:
+    cmd: wget -O linuxgsm.sh https://linuxgsm.sh
+
+- name: change permissions on linuxgsm.sh
+  file:
+    path: /root linuxgsm.sh
+    mode: u+x
+
+- name: run linuxgsm to great sfserver file
+  shell:
+    cmd: bash /root/linuxgsm.sh sfserver
+
+- name: copy linuxgsm files to sfserver home and set permissions
+  copy:
+    remote_src: yes
+    src: /root/sfserver.sh
+    dest: /home/sfserver/sfserver
+    owner: sfserver
+    group: sfserver
+    mode: '0644'

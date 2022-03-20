@@ -1,6 +1,51 @@
 ---
 - hosts: factorygame
   become: yes
-  roles:
-  - ./roles/rhel
-  - ./roles/satisfactory
+  #roles:
+  #- ./roles/rhel
+  #- ./roles/satisfactory
+
+  tasks:
+  - name: install dependencies
+    dnf:
+      name:
+        - curl
+        - wget
+        - tar
+        - bzip2
+        - gzip
+        - unzip
+        - python3
+        - binutils
+        - bc
+        - jq
+        - tmux
+        - libstdc++
+        - nmap-ncat
+        - glibc.i686
+        - libstdc++.i686
+      state: present
+      update_cache: yes
+
+  - name: create sfserver user
+    user:
+      create_home: yes
+      name: sfserver
+      state: present
+
+  - name: copy skel bash
+    copy:
+      remote_src: yes
+      src: /etc/skel/.bashrc
+      dest: /home/sfserver/.bashrc
+
+  - name: create .ssh in sfserver home
+    file:
+      path: /home/sfserver/.ssh
+      state: directory
+
+  - name: copy authorized ssh key
+    copy:
+      remote_src: yes
+      src: /root/.ssh/authorized_keys
+      dest: /home/sfserver/.ssh/authorized_keys
