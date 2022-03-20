@@ -17,7 +17,7 @@ resource "proxmox_lxc" "factorygame" {
     count           = 2
     cores           = 4
     hostname        = "factorygame-${count.index+1}"
-    memory          = 12288
+    memory          = 16384
     onboot          = true
     ostemplate      = var.rockt
     protection      = false
