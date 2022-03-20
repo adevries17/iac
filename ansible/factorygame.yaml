@@ -11,21 +11,25 @@
   - name: install dependencies
     dnf:
       name:
-        - curl
-        - wget
-        - tar
-        - bzip2
-        - gzip
-        - unzip
-        - python3
-        - binutils
         - bc
-        - jq
-        - tmux
-        - libstdc++
-        - nmap-ncat
+        - binutils
+        - bzip2
+        - cpio
+        - curl
+        - file
         - glibc.i686
+        - gzip
+        - hostname
+        - jq
         - libstdc++.i686
+        - nmap-ncat
+        - python36
+        - tar
+        - tmux
+        - unzip
+        - util-linux
+        - wget
+        - xz
       state: present
       update_cache: yes
 
