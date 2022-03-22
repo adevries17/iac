@@ -40,7 +40,7 @@ resource "proxmox_lxc" "minecraft" {
     count           = 1
     cores           = 4
     hostname        = "minecraft-${count.index+1}"
-    memory          = 16384
+    memory          = 12288
     onboot          = true
     ostemplate      = var.rockt
     protection      = false
