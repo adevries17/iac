@@ -61,7 +61,7 @@ resource "proxmox_lxc" "minecraft" {
     }
 }
 resource "proxmox_lxc" "valheim" {
-    count           = 0
+    count           = 1
     cores           = 2
     hostname        = "valheim-${count.index+1}"
     memory          = 4096
