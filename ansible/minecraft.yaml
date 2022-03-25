@@ -1,5 +1,5 @@
 ---
-- hosts: factorygame
+- hosts: minecraft
   become: yes
   pre_tasks:
   - name: install epel-release
@@ -20,10 +20,11 @@
         - glibc.i686
         - gzip
         - hostname
+        - java-11-openjdk
         - jq
         - libstdc++.i686
         - nmap-ncat
-        - python36
+        - python3
         - tar
         - tmux
         - unzip
@@ -32,28 +33,24 @@
         - xz
       state: present
       update_cache: yes
-
-  - name: create sfserver user
+  - name: create pmcserver user
     user:
       create_home: yes
-      name: sfserver
+      name: pmcserver
       state: present
-
-  - name: copy skel bash
+  - name: copy .bash from skel
     copy:
       remote_src: yes
       src: /etc/skel/.bashrc
-      dest: /home/sfserver/.bashrc
-
-  - name: create .ssh in sfserver home
+      dest: /home/pmcserver/.bashrc
+  - name: create .ssh directory in pmcserver home
     file:
-      path: /home/sfserver/.ssh
+      path: /home/pmcserver/.ssh
       state: directory
-
   - name: copy authorized ssh key
     copy:
       remote_src: yes
       src: /root/.ssh/authorized_keys
-      dest: /home/sfserver/.ssh/authorized_keys
-      owner: sfserver
-      group: sfserver
+      dest: /home/pmcserver/.ssh/authorized_keys
+      owner: pmcserver
+      group: pmcserver

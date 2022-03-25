@@ -2,6 +2,10 @@
   - hosts: all
     become: yes
     tasks:
+    - name: upgrade all packages
+      package:
+        name: "*"
+        state: latest
     - name: install base software
       package:
         name:
