@@ -13,7 +13,7 @@ provider "proxmox" {
 }
 # resources
 resource "proxmox_lxc" "factorygame" {
-    count           = 3
+    count           = 2
     cores           = 4
     hostname        = "factorygame-${count.index+1}"
     memory          = 16384
@@ -85,7 +85,7 @@ resource "proxmox_lxc" "modmc" {
     }
 }
 resource "proxmox_lxc" "valheim" {
-    count           = 1
+    count           = 0
     cores           = 2
     hostname        = "valheim-${count.index+1}"
     memory          = 4096
