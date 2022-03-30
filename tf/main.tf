@@ -37,7 +37,7 @@ resource "proxmox_lxc" "factorygame" {
     }
 }
 resource "proxmox_lxc" "minecraft" {
-    count           = 1
+    count           = 0
     cores           = 4
     hostname        = "minecraft-${count.index+1}"
     memory          = 12288
@@ -47,7 +47,7 @@ resource "proxmox_lxc" "minecraft" {
     ssh_public_keys = var.sshkey
     start           = true
     swap            = 512
-    target_node     = "tnpve1"
+    target_node     = "tnpve2"
     unprivileged    = true
     network {
         bridge      = "vmbr0"
