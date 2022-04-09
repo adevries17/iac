@@ -61,9 +61,9 @@ resource "proxmox_lxc" "minecraft" {
     }
 }
 resource "proxmox_lxc" "modmc" {
-    count           = 0
+    count           = 1
     cores           = 4
-    hostname        = "modmc-${ count.index +1 }"
+    hostname        = "modmc-${count.index +1}"
     memory          = 16384
     onboot          = true
     ostemplate      = var.rockt
@@ -71,7 +71,7 @@ resource "proxmox_lxc" "modmc" {
     ssh_public_keys = var.sshkey
     start           = true
     swap            = 512
-    target_node     = "vmtoog"
+    target_node     = "tnpve2"
     unprivileged    = true
     network {
         bridge      = "vmbr0"
