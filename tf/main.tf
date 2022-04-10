@@ -109,7 +109,7 @@ resource "proxmox_lxc" "valheim" {
     }
 }
 resource "local_file" "ansible_inventory" {
-    content = templatefile("${abspath(path.root)}/templates/ansible-inventory.tpl", { factorygame=[for host in proxmox_lxc.factorygame.*: "${host.hostname}"], minecraft=[for host in proxmox_lxc.minecraft.*: "${host.hostname}"], valheim=[for host in proxmox_lxc.valheim.*: "${host.hostname}"] })
+    content = templatefile("${abspath(path.root)}/templates/ansible-inventory.tpl", { factorygame=[for host in proxmox_lxc.factorygame.*: "${host.hostname}"], minecraft=[for host in proxmox_lxc.minecraft.*: "${host.hostname}"], valheim=[for host in proxmox_lxc.valheim.*: "${host.hostname}"], modmc=[for host in proxmox_lxc.modmc.*: "${host.hostname}"] })
     filename = "${dirname(abspath(path.root))}/ansible/inventory.ini"
 }
 /*resource "proxmox_lxc" "rockmc-0" {
