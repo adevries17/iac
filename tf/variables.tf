@@ -7,6 +7,9 @@ variable "debtmpl" {
 variable "rockt" {
     default="local:vztmpl/rockylinux-8-default_20210929_amd64.tar.xz"
 }
+variable "ubtmpl" {
+    default="local:vztmpl/ubuntu-21.10-standard_21.10-1_amd64.tar.zst"
+}
 variable "lvmt" {
     default="local-lvm"
 }
