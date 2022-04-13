@@ -66,7 +66,7 @@ resource "proxmox_lxc" "minecraft" {
     }
 }
 resource "proxmox_lxc" "modmc" {
-    count           = 1
+    count           = 0
     cores           = 4
     hostname        = "modmc-${count.index +1}"
     memory          = 16384
