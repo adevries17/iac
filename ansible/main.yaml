@@ -12,4 +12,5 @@
           - vim
           - tmux
           - python3
+          - tar
         state: present
