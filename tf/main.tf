@@ -71,7 +71,7 @@ resource "proxmox_lxc" "modmc" {
     hostname        = "modmc-${count.index +1}"
     memory          = 16384
     onboot          = true
-    ostemplate      = var.rockt
+    ostemplate      = var.ubtmpl
     protection      = false
     ssh_public_keys = var.sshkey
     start           = true
