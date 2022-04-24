@@ -16,7 +16,7 @@ resource "local_file" "ansible_inventory" {
     content = templatefile("${abspath(path.root)}/templates/ansible-inventory.tpl", { factorygame=[for host in proxmox_lxc.factorygame.*: "${host.hostname}"], minecraft=[for host in proxmox_lxc.minecraft.*: "${host.hostname}"], modmc=[for host in proxmox_lxc.modmc.*: "${host.hostname}"] })
     filename = "${dirname(abspath(path.root))}/ansible/inventory.ini"
 }
-# resources
+# containers
 resource "proxmox_lxc" "factorygame" {
     count           = 2
     cores           = 4
