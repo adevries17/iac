@@ -1,12 +1,12 @@
 ---
 - hosts: factorygame
-  become: yes
+  become: true
   pre_tasks:
   - name: install epel-release
     dnf:
       name: epel-release
       state: latest
-      update_cache: yes
+      update_cache: true
   tasks:
   - name: install dependencies
     dnf:
@@ -31,17 +31,17 @@
         - wget
         - xz
       state: present
-      update_cache: yes
+      update_cache: true
 
   - name: create sfserver user
     user:
-      create_home: yes
+      create_home: true
       name: sfserver
       state: present
 
   - name: copy skel bash
     copy:
-      remote_src: yes
+      remote_src: true
       src: /etc/skel/.bashrc
       dest: /home/sfserver/.bashrc
 
@@ -52,7 +52,7 @@
 
   - name: copy authorized ssh key
     copy:
-      remote_src: yes
+      remote_src: true
       src: /root/.ssh/authorized_keys
       dest: /home/sfserver/.ssh/authorized_keys
       owner: sfserver
