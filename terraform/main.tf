@@ -13,7 +13,7 @@ provider "proxmox" {
 }
 # ansible inventory
 resource "local_file" "ansible_inventory" {
-  content  = templatefile("${abspath(path.root)}/templates/ansible-inventory.tpl", { factorygame = [for host in proxmox_lxc.factorygame.* : "${host.hostname}"], minecraft = [for host in proxmox_lxc.minecraft.* : "${host.hostname}"] })
+  content  = templatefile("${abspath(path.root)}/templates/ansible-inventory.tpl", { factorygame = [for host in proxmox_lxc.factorygame.* : "${host.hostname}"], minecraft = [for host in proxmox_lxc.minecraft.* : "${host.hostname}"], valheim = [for host in proxmox_lxc.valheim.* : "${host.hostname}"] })
   filename = "${dirname(abspath(path.root))}/ansible/inventory.ini"
 }
 # containers
@@ -27,6 +27,7 @@ resource "proxmox_lxc" "factorygame" {
   ssh_public_keys = var.sshkey
   start           = true
   target_node     = "tnpve1"
+  unprivileged    = true
   network {
     bridge = "vmbr0"
     gw     = "192.168.17.1"
@@ -48,6 +49,7 @@ resource "proxmox_lxc" "minecraft" {
   ssh_public_keys = var.sshkey
   start           = true
   target_node     = "tnpve2"
+  unprivileged    = true
   network {
     bridge = "vmbr0"
     gw     = "192.168.17.1"
@@ -69,6 +71,29 @@ resource "proxmox_lxc" "testbox" {
   ssh_public_keys = var.sshkey
   start           = true
   target_node     = "tnpve2"
+  unprivileged    = true
+  network {
+    bridge = "vmbr0"
+    gw     = "192.168.17.1"
+    ip     = "dhcp"
+    name   = "eth0"
+  }
+  rootfs {
+    size    = "8G"
+    storage = var.lvmt
+  }
+}
+resource "proxmox_lxc" "valheim" {
+  count           = 1
+  cores           = 2
+  hostname        = "valheim-${count.index + 1}"
+  memory          = 4096
+  onboot          = true
+  ostemplate      = var.rocky8
+  ssh_public_keys = var.sshkey
+  start           = true
+  target_node     = "tnpve2"
+  unprivileged    = true
   network {
     bridge = "vmbr0"
     gw     = "192.168.17.1"
