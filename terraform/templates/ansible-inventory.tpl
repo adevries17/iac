@@ -7,8 +7,3 @@ ${host}
 %{ for host in minecraft ~}
 ${host}
 %{ endfor ~}
-
-[modmc]
-%{ for host in modmc ~}
-${host}
-%{ endfor ~}
