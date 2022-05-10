@@ -24,12 +24,9 @@ resource "proxmox_lxc" "factorygame" {
   memory          = 16384
   onboot          = true
   ostemplate      = var.rockt
-  protection      = false
   ssh_public_keys = var.sshkey
   start           = true
-  swap            = 512
   target_node     = "tnpve1"
-  unprivileged    = true
   network {
     bridge = "vmbr0"
     gw     = "192.168.17.1"
@@ -48,12 +45,9 @@ resource "proxmox_lxc" "minecraft" {
   memory          = 12288
   onboot          = true
   ostemplate      = var.rockt
-  protection      = false
   ssh_public_keys = var.sshkey
   start           = true
-  swap            = 512
   target_node     = "tnpve2"
-  unprivileged    = true
   network {
     bridge = "vmbr0"
     gw     = "192.168.17.1"
@@ -72,12 +66,9 @@ resource "proxmox_lxc" "testbox" {
   memory          = 4096
   onboot          = true
   ostemplate      = var.ubtmpl
-  protection      = false
   ssh_public_keys = var.sshkey
   start           = true
-  swap            = 512
   target_node     = "tnpve2"
-  unprivileged    = true
   network {
     bridge = "vmbr0"
     gw     = "192.168.17.1"
