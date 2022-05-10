@@ -1,0 +1,25 @@
+- name: Install dependencies
+  dnf:
+    name:
+      - bc
+      - binutils
+      - bzip2
+      - cpio
+      - curl
+      - file
+      - glibc-devel
+      - glibc.i686
+      - gzip
+      - hostname
+      - jq
+      - libstdc++.i686
+      - nmap-ncat
+      - python3
+      - tar
+      - tmux
+      - unzip
+      - util-linux
+      - wget
+      - xz
+    state: present
+    update_cache: true
