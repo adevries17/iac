@@ -18,7 +18,12 @@ variable "lvmt" {
 variable "rocky8" {
   default = "tnnaspve:vztmpl/rockylinux-8-default_20210929_amd64.tar.xz"
 }
-
+variable "ubuntu2204" {
+  default = "tnnaspve:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
+}
+variable "debian11" {
+  default = "tnnaspve:vztmpl/debian-11-standard_11.3-1_amd64.tar.zst"
+}
 variable "sshkey" {
   sensitive = true
 }

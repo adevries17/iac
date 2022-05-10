@@ -61,28 +61,6 @@ resource "proxmox_lxc" "minecraft" {
     storage = var.lvmt
   }
 }
-resource "proxmox_lxc" "testbox" {
-  count           = 1
-  cores           = 4
-  hostname        = "testbox-${count.index + 1}"
-  memory          = 4096
-  onboot          = true
-  ostemplate      = var.ubtmpl
-  ssh_public_keys = var.sshkey
-  start           = true
-  target_node     = "tnpve2"
-  unprivileged    = true
-  network {
-    bridge = "vmbr0"
-    gw     = "192.168.17.1"
-    ip     = "dhcp"
-    name   = "eth0"
-  }
-  rootfs {
-    size    = "8G"
-    storage = var.lvmt
-  }
-}
 resource "proxmox_lxc" "valheim" {
   count           = 1
   cores           = 2
