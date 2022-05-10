@@ -1,0 +1,18 @@
+---
+- hosts: factorygame
+  tasks:
+  - name: upgrade all packages
+    dnf: name=* state=latest
+    update_cache: true
+  - name: stop servers
+    become: true
+    become_user: "sfserver"
+    command: "/home/sfserver/sfserver stop"
+  - name: update factorygame version
+    become: true
+    become_user: "sfserver"
+    command: "/home/sfserver/sfserver update"
+  - name: start factorygame server
+    become: true
+    become_user: "sfserver"
+    command: "/home/sfserver/sfserver start"
