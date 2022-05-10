@@ -33,7 +33,7 @@
         dest: /home/vhserver/.ssh/authorized_keys
         owner: vhserver
         group: vhserver
-    - name: install deps
+    - name: install dependencies
       dnf:
         name:
         - bc
