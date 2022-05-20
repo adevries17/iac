@@ -14,9 +14,9 @@ provider "proxmox" {
 # ansible inventory
 resource "local_file" "ansible_inventory" {
   content = templatefile("${abspath(path.root)}/templates/ansible-inventory.tpl", {
-    dingusfactory    = [for host in proxmox_vm_qemu.dingusfactory.* : "${host.name}"]
-    dingusfactorylxc = [for host in proxmox_lxc.dingusfactorylxc.* : "${host.hostname}"]
-    arkabtc          = [for host in proxmox_lxc.arkabtc.* : "${host.hostname}"]
+    dingusfactory    = [for host in proxmox_vm_qemu.dingusfactory.* : "${host.name}.turtlesnet.dev"]
+    dingusfactorylxc = [for host in proxmox_lxc.dingusfactorylxc.* : "${host.hostname}.turtlesnet.dev"]
+    arkabtc          = [for host in proxmox_lxc.arkabtc.* : "${host.hostname}.turtlesnet.dev"]
   })
   filename = "${dirname(abspath(path.root))}/ansible/inventory.ini"
 }
