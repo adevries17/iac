@@ -1,0 +1,8 @@
+---
+- name: install base packages for debian family.
+  import_tasks: debian.yaml
+  when: ansible_facts['os_family']|lower == 'debian'
+
+- name: Install base packages for rhel family.
+  import_tasks: rhel.yaml
+  when: ansible_facts['os_family']|lower == 'rhel'

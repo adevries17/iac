@@ -1,0 +1,8 @@
+---
+- name: install base packages
+  apt:
+    name:
+      - vim
+      - tmux
+      - ncurses-term
+    state: present

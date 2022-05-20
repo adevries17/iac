@@ -1,0 +1,32 @@
+---
+- hosts: arkabtc
+  become: true
+  roles:
+   - ./roles/updates
+   - ./roles/ark
+  tasks:
+  - name: create arkserver user
+    user:
+      create_home: true
+      name: arkserver
+      state: present
+  - name: copy .bash from skel
+    copy:
+      remote_src: true
+      src: /etc/skel/.bashrc
+      dest: /home/arkserver/.bashrc
+      owner: arkserver
+      group: arkserver
+  - name: create .ssh directory in arkserver home
+    file:
+      path: /home/arkserver/.ssh
+      state: directory
+      owner: arkserver
+      group: arkserver
+  - name: copy authorized ssh key
+    copy:
+      remote_src: true
+      src: /root/.ssh/authorized_keys
+      dest: /home/arkserver/.ssh/authorized_keys
+      owner: arkserver
+      group: arkserver

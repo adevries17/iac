@@ -1,8 +1,0 @@
----
-- name: Install dependencies for rhel.
-  import_tasks: rhel.yaml
-  when: ansible_facts['os_family']|lower == 'rhel'
-
-- name: Install dependencies for debian.
-  import_tasks: debian.yaml
-  when: ansible_facts['os_family']|lower == 'debian'
