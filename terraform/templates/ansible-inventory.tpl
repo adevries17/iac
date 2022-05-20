@@ -1,14 +1,14 @@
-[factorygame]
-%{ for host in factorygame ~}
+[dingusfactory]
+%{ for host in dingusfactory ~}
 ${host}
 %{ endfor ~}
 
-[minecraft]
-%{ for host in minecraft ~}
+[dingusfactorylxc]
+%{ for host in dingusfactorylxc ~}
 ${host}
 %{ endfor ~}
 
-[valheim]
-%{ for host in valheim ~}
+[arkabtc]
+%{ for host in arkabtc ~}
 ${host}
 %{ endfor ~}

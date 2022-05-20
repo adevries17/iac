@@ -1,6 +1,8 @@
 ---
-- hosts: factorygame
+- hosts: dingusfactory
   become: true
+  become_user: root
+  become_method: sudo
   pre_tasks:
   - name: install epel-release
     dnf:
@@ -23,7 +25,7 @@
         - jq
         - libstdc++.i686
         - nmap-ncat
-        - python36
+        - python3
         - tar
         - tmux
         - unzip
@@ -53,7 +55,7 @@
   - name: copy authorized ssh key
     copy:
       remote_src: true
-      src: /root/.ssh/authorized_keys
+      src: /home/toog/.ssh/authorized_keys
       dest: /home/sfserver/.ssh/authorized_keys
       owner: sfserver
       group: sfserver

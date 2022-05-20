@@ -1,0 +1,7 @@
+- name: Add 32bit package architecture.
+  become: true
+  command: "dpkg --add-architecture i386"
+- name: Install debian dependencies.
+  apt:
+    name:
+      -
