@@ -1,8 +1,0 @@
----
-- name: Install deps for debian family.
-  import_tasks: debian.yaml
-  when: ansible_facts['os_family']|lower == 'debian'
-
-- name: Install deps for rhel family.
-  import_tasks: rhel.yaml
-  when: ansible_facts['os_family']|lower == 'rhel'
