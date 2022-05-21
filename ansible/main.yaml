@@ -1,16 +1,6 @@
 ---
 - hosts: all
   become: true
-  tasks:
-  - name: upgrade all packages
-    package:
-      name: "*"
-      state: latest
-  - name: install base software
-    package:
-      name:
-        - vim
-        - tmux
-        - python3
-        - tar
-      state: present
+  roles:
+    - ./roles/updates
+    - ./roles/base
