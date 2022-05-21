@@ -1,9 +1,9 @@
 - name: Add 32bit package architecture.
-  become: true
-  command: "dpkg --add-architecture i386"
+  ansible.builtin.become: true
+  ansible.builtin.command: "dpkg --add-architecture i386"
 - name: Install LGSM dependencies.
   become: true
-  apt:
+  ansible.builtin.package:
     name:
       - curl
       - wget

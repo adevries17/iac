@@ -8,25 +8,28 @@
   when: ansible_facts['os_family']|lower == 'rhel'
 
 - name: create arkserver user.
-  user:
+  ansible.builtin.user:
     create_home: true
     name: arkserver
     state: present
-- name: copy .bash from default skel
-  copy:
+
+- name: copy .bash from default skel.
+  ansible.builtin.copy:
     remote_src: true
     src: /etc/skel/.bashrc
     dest: /home/arkserver/.bashrc
     owner: arkserver
     group: arkserver
-- name: create .ssh directory in arkserver home
-  file:
+
+- name: create .ssh directory in arkserver home.
+  ansible.builtin.file:
     path: /home/arkserver/.ssh
     state: directory
     owner: arkserver
     group: arkserver
-- name: copy authorized ssh key
-  copy:
+
+- name: copy authorized ssh key.
+  ansible.builtin.copy:
     remote_src: true
     src: /root/.ssh/authorized_keys
     dest: /home/arkserver/.ssh/authorized_keys
