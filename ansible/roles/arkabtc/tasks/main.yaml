@@ -13,14 +13,6 @@
     name: arkserver
     state: present
 
-- name: copy .bash from default skel.
-  ansible.builtin.copy:
-    remote_src: true
-    src: /etc/skel/.bashrc
-    dest: /home/arkserver/.bashrc
-    owner: arkserver
-    group: arkserver
-
 - name: create .ssh directory in arkserver home.
   ansible.builtin.file:
     path: /home/arkserver/.ssh
