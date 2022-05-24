@@ -5,4 +5,5 @@
       - vim
       - tmux
       - ncurses-term
+      - tree
     state: present
