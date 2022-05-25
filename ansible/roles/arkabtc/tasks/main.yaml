@@ -27,3 +27,21 @@
     dest: /home/arkserver/.ssh/authorized_keys
     owner: arkserver
     group: arkserver
+
+- name: inject GameUserSettings.ini file.
+  ansible.builtin.template:
+    src: GameUserSettings.ini
+    dest: /home/arkserver/serverfiles/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini
+    owner: arkserver
+    group: arkserver
+    mode: 0644
+  notify: restart_arkserver
+
+- name: inject Game.ini file.
+  ansible.builtin.template:
+    src: Game.ini
+    dest: /home/arkserver/serverfiles/ShooterGame/Saved/Config/LinuxServer/Game.ini
+    owner: arkserver
+    group: arkserver
+    mode: 0644
+  notify: restart_arkserver

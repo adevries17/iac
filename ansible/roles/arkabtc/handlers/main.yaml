@@ -1,0 +1,4 @@
+- name: restart_arkserver
+  become: true
+  become_user: arkserver
+  shell: /home/arkserver/arkserver restart

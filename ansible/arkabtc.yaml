@@ -1,6 +1,5 @@
 ---
 - hosts: arkabtc
-  become: true
   roles:
    - updates
-   - ark
+   - arkabtc
