@@ -1,0 +1,24 @@
+---
+- name: install rhel dependencies.
+  ansible.builtin.dnf:
+    name:
+      - epel-release
+      - curl
+      - wget
+      - tar
+      - bzip2
+      - gzip
+      - unzip
+      - util-linux
+      - file
+      - python3
+      - binutils
+      - bc
+      - jq
+      - tmux
+      - glibc.i686
+      - libstdc++
+      - libstdc++.i686
+      - nmap-ncat
+    update_cache: true
+    state: present
